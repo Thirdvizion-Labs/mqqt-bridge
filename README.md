@@ -52,7 +52,7 @@ project/
 
 ## 1. MQTT Broker Setup (VPS Server)
 
-> Run these steps **on your VPS** at `213.210.21.150`
+> Run these steps **on your VPS** at `Destination Server`
 
 ### Install Mosquitto
 
