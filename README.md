@@ -7,8 +7,8 @@ A two-server system that polls local HTTP APIs for agricultural and water sensor
 ## Architecture Overview
 
 ```
-┌─────────────────────┐        MQTT Publish        ┌──────────────────────┐
-│   publisher.py      │ ─────────────────────────► │   MQTT Broker (VPS)  │
+┌─────────────────────┐        MQTT Publish         ┌──────────────────────┐
+│   mqqt-publisher.py │ ─────────────────────────►  │   MQTT Broker (VPS)  │
 │  (Polling Server)   │                             │   <YOUR_VPS_IP>      │
 │                     │                             │   Port: 1883         │
 │  Polls:             │                             └──────────┬───────────┘
@@ -16,7 +16,7 @@ A two-server system that polls local HTTP APIs for agricultural and water sensor
 │  - /water  (water)  │                                        │ MQTT Subscribe
 └─────────────────────┘                                        ▼
                                                     ┌──────────────────────┐
-                                                    │   server.py          │
+                                                    │   mqtt-receiver.py   │
                                                     │  (Flask API Server)  │
                                                     │                      │
                                                     │  Exposes:            │
@@ -32,8 +32,8 @@ A two-server system that polls local HTTP APIs for agricultural and water sensor
 ```
 project/
 │
-├── publisher.py      # Polls local HTTP APIs → publishes to MQTT broker
-├── server.py         # Subscribes to MQTT broker → exposes REST API via Flask
+├── mqtt-publisher.py        # Polls local HTTP APIs → publishes to MQTT broker
+├── mqtt-receiver.py         # Subscribes to MQTT broker → exposes REST API via Flask
 └── README.md
 ```
 
